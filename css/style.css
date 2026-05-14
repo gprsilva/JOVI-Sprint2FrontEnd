@@ -1,0 +1,2632 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ─── VARIÁVEIS GLOBAIS ─── */
+:root {
+    --jovi-blue:      #0A6CFF;
+    --jovi-blue-dim:  rgba(10, 108, 255, 0.16);
+    --jovi-blue-glow: rgba(10, 108, 255, 0.35);
+    --border-white:   rgba(255, 255, 255, 0.10);
+    --text-muted:     rgba(255, 255, 255, 0.40);
+    --font-display:   'Rajdhani', -apple-system, sans-serif;
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: var(--font-display);
+}
+
+/* ─── PHONE FRAME ─── */
+.phone {
+    width: 320px;
+    height: 690px;
+    border-radius: 38px;
+    overflow: hidden;
+    background: #111;
+    position: relative;
+    border: 1.5px solid #1e2030;
+    box-shadow:
+        0 40px 80px rgba(0, 0, 0, 0.85),
+        0 0 0 1px rgba(255, 255, 255, 0.02),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* ─── CAMERA SCREEN ─── */
+.camera-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ════════════════════════════════════
+   INDEX — Splash
+════════════════════════════════════ */
+.status-bar {
+    width: 100%;
+    height: 44px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 40px 40px 0 0;
+}
+
+.time {
+    color: var(--jovi-blue);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.3px;
+}
+
+.icons-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.icon-svg {
+    fill: var(--jovi-blue);
+}
+
+.battery-container {
+    width: 25px;
+    height: 12px;
+    border: 1px solid var(--jovi-blue);
+    border-radius: 3px;
+    position: relative;
+    padding: 1px;
+}
+
+.battery-level {
+    width: 80%;
+    height: 100%;
+    background-color: var(--jovi-blue);
+    border-radius: 1px;
+}
+
+.battery-cap {
+    width: 2px;
+    height: 4px;
+    background-color: var(--jovi-blue);
+    position: absolute;
+    right: -4px;
+    top: 4px;
+    border-radius: 0 1px 1px 0;
+}
+
+.animacao {
+    display: flex;
+    justify-self: center;
+    width: 100%;
+    margin: auto;
+}
+
+/* ════════════════════════════════════
+   CÂMERA — Fundo e overlay
+════════════════════════════════════ */
+.fundoTela {
+    background: url('../imgs/TelaFundo.png') no-repeat center center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Overlay cinematográfico em duas camadas */
+.fundoTela::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(to bottom,  rgba(4, 8, 18, 0.78) 0%,  transparent 24%),
+        linear-gradient(to top,     rgba(4, 8, 18, 0.97) 0%,  rgba(4, 8, 18, 0.75) 28%, transparent 58%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ════════════════════════════════════
+   STATUS BAR (câmera)
+════════════════════════════════════ */
+.status-bar-cam {
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Força branco em todos ícones da câmera */
+.fundoTela .time             { color: #fff !important; font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.4px; }
+.fundoTela .icon-svg         { fill: #fff !important; }
+.fundoTela .battery-container{ border-color: rgba(255,255,255,0.75) !important; }
+.fundoTela .battery-level,
+.fundoTela .battery-cap      { background-color: #fff !important; }
+
+/* ════════════════════════════════════
+   HEADER DA CÂMERA
+════════════════════════════════════ */
+.header-camera {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    width: 100%;
+    padding: 8px 16px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 12;
+    animation: fadeUp 0.55s ease both;
+}
+
+/* Botão de ícone genérico (configurações, flash, fechar) */
+.cam-icon-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--border-white);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.cam-icon-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.cam-icon-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Grupo central: apenas título */
+.cam-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--jovi-blue);
+    text-shadow: 0 0 18px var(--jovi-blue-glow);
+    line-height: 1;
+}
+
+/* ════════════════════════════════════
+   SMART-POP — flutuante e centralizado
+════════════════════════════════════ */
+.smart-pop-wrap {
+    position: absolute;
+    top: 106px;
+    left: 0;
+    right: 0;
+    z-index: 14;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    animation: smartPopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+@keyframes smartPopIn {
+    from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+.smart-pop {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 260px;
+
+    /* Vidro escuro com brilho azul */
+    background: linear-gradient(
+        135deg,
+        rgba(6, 12, 28, 0.88) 0%,
+        rgba(8, 18, 42, 0.84) 100%
+    );
+    border: 1px solid rgba(10, 108, 255, 0.32);
+    border-radius: 14px;
+    padding: 10px 12px 10px 10px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Brilho interno superior */
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.07),
+        0 4px 24px rgba(10, 108, 255, 0.15),
+        0 1px 6px rgba(0, 0, 0, 0.40);
+}
+
+/* ── Lado esquerdo: badge IA + anel pulsante ── */
+.smart-pop-left {
+    position: relative;
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Anel externo pulsante */
+.smart-pop-pulse-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(10, 108, 255, 0.5);
+    animation: ringExpand 2s ease-out infinite;
+}
+
+@keyframes ringExpand {
+    0%   { transform: scale(0.85); opacity: 0.7; }
+    70%  { transform: scale(1.25); opacity: 0; }
+    100% { transform: scale(1.25); opacity: 0; }
+}
+
+/* Badge IA */
+.smart-pop-ia-badge {
+    position: relative;
+    z-index: 1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0A6CFF 0%, #0047cc 100%);
+    box-shadow: 0 0 10px rgba(10, 108, 255, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* ── Corpo central: label + modo ── */
+.smart-pop-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.smart-pop-label {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+    line-height: 1;
+}
+
+.smart-pop-mode {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    line-height: 1.1;
+}
+
+/* ── Botão OK ── */
+.smart-pop-ok {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--jovi-blue);
+    padding: 5px 10px;
+    border-radius: 7px;
+    border: 1px solid rgba(10, 108, 255, 0.30);
+    background: rgba(10, 108, 255, 0.12);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.smart-pop-ok:hover {
+    background: rgba(10, 108, 255, 0.24);
+    border-color: rgba(10, 108, 255, 0.50);
+}
+
+/* Separador vertical entre body e ok */
+.smart-pop::before {
+    content: '';
+    width: 1px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+}
+
+
+/* Ações da direita (flash + fechar) */
+.cam-actions {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+/* ════════════════════════════════════
+   FOOTER DA CÂMERA
+════════════════════════════════════ */
+.footer-camera {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 14px;
+    background: linear-gradient(to top,
+        rgba(4, 8, 18, 0.97) 0%,
+        rgba(4, 8, 18, 0.85) 52%,
+        transparent 100%);
+    animation: fadeUp 0.6s ease both;
+}
+
+/* ── Seletor de modos ── */
+.selector-modos {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+    padding: 6px 14px;
+    margin-bottom: 22px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.selector-modos::-webkit-scrollbar { display: none; }
+
+.modo-item {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    color: var(--text-muted);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.22s;
+    user-select: none;
+}
+
+.modo-item:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Item ativo — pill azul de fundo */
+.modo-item.active {
+    color: var(--jovi-blue);
+    background: var(--jovi-blue-dim);
+    border: 1px solid rgba(10, 108, 255, 0.24);
+    box-shadow: 0 0 14px rgba(10, 108, 255, 0.12);
+}
+
+/* Link "MAIS" sem sublinhado */
+.modo-link {
+    text-decoration: none;
+    color: var(--text-muted);
+}
+
+.modo-link:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Controles shutter ── */
+.shutter-container {
+    width: 100%;
+    padding: 0 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Botões laterais (zoom, flash) */
+.cam-ctrl-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.cam-ctrl-btn:hover {
+    background: rgba(255, 255, 255, 0.11);
+}
+
+.cam-ctrl-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cam-ctrl-label {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* Botão shutter principal */
+.btn-shutter {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.88);
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.07),
+        0 0 22px rgba(255, 255, 255, 0.06);
+    transition: transform 0.13s ease, box-shadow 0.2s;
+}
+
+.btn-shutter:hover {
+    box-shadow:
+        0 0 0 4px rgba(255, 255, 255, 0.12),
+        0 0 28px rgba(255, 255, 255, 0.10);
+}
+
+.btn-shutter:active {
+    transform: scale(0.93);
+}
+
+/* Disco branco interno */
+.btn-shutter-inner {
+    display: block;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #fff;
+    transition: background 0.15s;
+}
+
+/* ── Home bar ── */
+.home-bar {
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.38);
+    border-radius: 999px;
+    margin-top: 16px;
+}
+
+/* ─── ANIMAÇÃO DE ENTRADA ─── */
+.header-camera,
+.footer-camera,
+.status-bar-cam {
+    animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ================================================
+   OUTROS MODOS — tela de seleção de modos extras
+   ================================================ */
+
+/* Fundo geral da tela */
+.camera-modes-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(170deg, #040c1a 0%, #060f1e 45%, #020609 100%);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Grade perspectiva sutil no fundo */
+.camera-modes-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(10, 108, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10, 108, 255, 0.045) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 20%, transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Halo azul superior */
+.camera-modes-screen::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 160px;
+    background: radial-gradient(ellipse at center, rgba(10, 108, 255, 0.14) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Status bar ── */
+.modes-status-bar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.modes-status-bar .time {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.4px;
+}
+
+.modes-status-bar .icon-svg         { fill: #fff; }
+.modes-status-bar .battery-container{ border-color: rgba(255,255,255,0.75); }
+.modes-status-bar .battery-level,
+.modes-status-bar .battery-cap      { background-color: #fff; }
+
+/* ── Header ── */
+.modes-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 18px 0;
+    flex-shrink: 0;
+}
+
+.modes-back-btn {
+    text-decoration: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: background 0.2s;
+}
+
+.modes-back-btn:hover { background: rgba(255, 255, 255, 0.1); }
+
+.modes-back-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.modes-page-title {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--jovi-blue);
+    text-shadow: 0 0 18px var(--jovi-blue-glow);
+}
+
+.modes-header-ghost { width: 32px; }
+
+/* ── Subtítulo ── */
+.modes-hint {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.22);
+    margin: 10px 0 14px;
+    flex-shrink: 0;
+}
+
+/* ── Grid de modos ── */
+.modes-grid-wrap {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 14px 12px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.modes-grid-wrap::-webkit-scrollbar { display: none; }
+
+.modes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+}
+
+/* Card individual */
+.mode-card-jovi {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 16px 6px 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.22s, border-color 0.22s, transform 0.18s;
+    animation: cardIn 0.5s ease both;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.mode-card-jovi:nth-child(1)  { animation-delay: 0.04s; }
+.mode-card-jovi:nth-child(2)  { animation-delay: 0.08s; }
+.mode-card-jovi:nth-child(3)  { animation-delay: 0.12s; }
+.mode-card-jovi:nth-child(4)  { animation-delay: 0.16s; }
+.mode-card-jovi:nth-child(5)  { animation-delay: 0.20s; }
+.mode-card-jovi:nth-child(6)  { animation-delay: 0.24s; }
+.mode-card-jovi:nth-child(7)  { animation-delay: 0.28s; }
+.mode-card-jovi:nth-child(8)  { animation-delay: 0.32s; }
+.mode-card-jovi:nth-child(9)  { animation-delay: 0.36s; }
+.mode-card-jovi:nth-child(10) { animation-delay: 0.40s; }
+.mode-card-jovi:nth-child(11) { animation-delay: 0.44s; }
+.mode-card-jovi:nth-child(12) { animation-delay: 0.48s; }
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.mode-card-jovi:hover {
+    background: var(--jovi-blue-dim);
+    border-color: rgba(10, 108, 255, 0.22);
+    transform: translateY(-1px);
+}
+
+.mode-card-jovi:active { transform: scale(0.96); }
+
+/* Card Jovi Edu — destaque */
+.mode-card-jovi.highlight {
+    background: rgba(10, 108, 255, 0.07);
+    border-color: rgba(10, 108, 255, 0.28);
+    box-shadow:
+        0 0 18px rgba(10, 108, 255, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.mode-card-jovi.highlight:hover {
+    background: rgba(10, 108, 255, 0.14);
+    border-color: rgba(10, 108, 255, 0.42);
+}
+
+.mode-card-jovi.highlight::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(10, 108, 255, 0.5), transparent);
+}
+
+/* Ícone do card */
+.mode-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-card-jovi.highlight .mode-card-icon {
+    background: rgba(10, 108, 255, 0.10);
+    border-color: rgba(10, 108, 255, 0.20);
+}
+
+.mode-card-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.55);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.mode-card-jovi.highlight .mode-card-icon svg { stroke: var(--jovi-blue); }
+
+/* Label do card */
+.mode-card-label {
+    font-family: var(--font-display);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+    color: rgba(255, 255, 255, 0.48);
+    text-align: center;
+    line-height: 1.25;
+    text-transform: uppercase;
+}
+
+.mode-card-jovi.highlight .mode-card-label { color: var(--jovi-blue); }
+
+/* ── Home bar (reutilizada em outrosModos) ── */
+.modes-home-bar {
+    position: relative;
+    z-index: 10;
+    width: 96px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.32);
+    margin: 10px auto 14px;
+    flex-shrink: 0;
+}
+
+/* ================================================
+   CONFIGURAÇÕES — tela de configurações da câmera
+   ================================================ */
+
+.cfg-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(170deg, #040c1a 0%, #060f1e 45%, #020609 100%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Reutiliza grade e halo como pseudo-elementos nomeados */
+.cfg-bg-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(10, 108, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10, 108, 255, 0.04) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 15%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cfg-bg-halo {
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 140px;
+    background: radial-gradient(ellipse at center, rgba(10, 108, 255, 0.13) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Status bar compartilhada cfg/edit ── */
+.cfg-status-bar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 44px;
+    padding: 0 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.cfg-time {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.4px;
+}
+
+.cfg-icon-svg { fill: #fff; }
+
+.cfg-battery {
+    width: 25px;
+    height: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 3px;
+    position: relative;
+    padding: 1px;
+}
+
+.cfg-battery-level {
+    width: 75%;
+    height: 100%;
+    background: #fff;
+    border-radius: 1px;
+}
+
+.cfg-battery-cap {
+    width: 2px;
+    height: 4px;
+    background: #fff;
+    position: absolute;
+    right: -4px;
+    top: 4px;
+    border-radius: 0 1px 1px 0;
+}
+
+/* ── Header cfg ── */
+.cfg-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 18px 0;
+    flex-shrink: 0;
+}
+
+.cfg-page-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--jovi-blue);
+    text-shadow: 0 0 16px var(--jovi-blue-glow);
+}
+
+.cfg-back-btn {
+    text-decoration: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: background 0.2s;
+}
+
+.cfg-back-btn:hover { background: rgba(255, 255, 255, 0.10); }
+
+.cfg-back-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.cfg-header-ghost { width: 32px; }
+
+/* ── Body scrollável ── */
+.cfg-body {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px 14px 8px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cfg-body::-webkit-scrollbar { display: none; }
+
+/* ── Rótulo de seção ── */
+.cfg-section-label {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.30);
+    margin: 18px 4px 8px;
+}
+
+.cfg-section-label:first-child { margin-top: 4px; }
+
+/* ── Linha de opção ── */
+.cfg-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 6px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.cfg-row:hover,
+.cfg-row-link:hover {
+    background: rgba(255, 255, 255, 0.055);
+    border-color: rgba(255, 255, 255, 0.10);
+}
+
+/* Ícone da linha */
+.cfg-row-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.cfg-row-icon svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.55);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Ícone azul (IA) */
+.cfg-row-icon-blue {
+    background: rgba(10, 108, 255, 0.10);
+    border-color: rgba(10, 108, 255, 0.18);
+}
+
+.cfg-row-icon-blue svg { stroke: var(--jovi-blue); }
+
+/* Corpo da linha */
+.cfg-row-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.cfg-row-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.2px;
+}
+
+.cfg-row-sub {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.2px;
+}
+
+/* Seta direita */
+.cfg-row-arrow {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.22);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+}
+
+/* ── Toggle switch ── */
+.cfg-toggle {
+    width: 38px;
+    height: 22px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    position: relative;
+    flex-shrink: 0;
+    transition: background 0.25s, border-color 0.25s;
+}
+
+.cfg-toggle-on {
+    background: var(--jovi-blue);
+    border-color: rgba(10, 108, 255, 0.4);
+    box-shadow: 0 0 10px rgba(10, 108, 255, 0.35);
+}
+
+.cfg-toggle-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    transition: left 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cfg-toggle-on .cfg-toggle-thumb {
+    left: calc(100% - 18px);
+}
+
+/* ── Barra de armazenamento ── */
+.cfg-storage-bar-wrap {
+    padding: 0 4px;
+    margin-bottom: 6px;
+}
+
+.cfg-storage-bar {
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.cfg-storage-fill {
+    height: 100%;
+    width: 14%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--jovi-blue), #5eb0ff);
+    box-shadow: 0 0 8px rgba(10, 108, 255, 0.4);
+}
+
+.cfg-storage-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-display);
+    font-size: 9.5px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.28);
+    letter-spacing: 0.3px;
+}
+
+/* ================================================
+   EDITAR MODOS
+   ================================================ */
+
+.edit-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(170deg, #040c1a 0%, #060f1e 45%, #020609 100%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ── Header editar ── */
+.edit-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 18px 0;
+    flex-shrink: 0;
+}
+
+.edit-action-btn {
+    text-decoration: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: background 0.2s;
+}
+
+.edit-action-btn:hover { background: rgba(255, 255, 255, 0.10); }
+
+.edit-action-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.65);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Botão confirmar — azul */
+.edit-action-confirm {
+    background: rgba(10, 108, 255, 0.15);
+    border-color: rgba(10, 108, 255, 0.30);
+}
+
+.edit-action-confirm:hover {
+    background: rgba(10, 108, 255, 0.26);
+}
+
+.edit-action-confirm svg { stroke: var(--jovi-blue); }
+
+/* ── Body scrollável ── */
+.edit-body {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 14px 8px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.edit-body::-webkit-scrollbar { display: none; }
+
+/* ── Cabeçalho de seção editar ── */
+.edit-section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.edit-section-title {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.edit-section-hint {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.25);
+    text-align: right;
+    max-width: 110px;
+    line-height: 1.3;
+}
+
+/* ── Grid de edição ── */
+.edit-grid {
+    display: grid;
+    gap: 8px;
+}
+
+/* Modos principais: 3 colunas */
+.edit-grid-main {
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: 6px;
+}
+
+/* Mais modos: 3 colunas */
+.edit-grid-more {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* ── Card de modo editar ── */
+.edit-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    padding: 13px 6px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    animation: cardIn 0.4s ease both;
+}
+
+/* Card ativo (na tela principal) */
+.edit-card-active {
+    background: rgba(10, 108, 255, 0.055);
+    border-color: rgba(10, 108, 255, 0.18);
+}
+
+/* Card highlight (Jovi Edu) */
+.edit-card-highlight {
+    background: rgba(10, 108, 255, 0.08);
+    border-color: rgba(10, 108, 255, 0.28);
+    box-shadow: 0 0 14px rgba(10, 108, 255, 0.10);
+}
+
+.edit-card-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(90deg, transparent, rgba(10, 108, 255, 0.5), transparent);
+}
+
+/* Card vazio (slot para adicionar) */
+.edit-card-empty {
+    border-style: dashed;
+    border-color: rgba(255, 255, 255, 0.10);
+    background: transparent;
+}
+
+/* Ícone do card */
+.edit-card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-card-active .edit-card-icon {
+    background: rgba(10, 108, 255, 0.10);
+    border-color: rgba(10, 108, 255, 0.20);
+}
+
+.edit-card-highlight .edit-card-icon {
+    background: rgba(10, 108, 255, 0.14);
+    border-color: rgba(10, 108, 255, 0.30);
+}
+
+.edit-card-icon-ghost {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.07);
+}
+
+.edit-card-icon svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.50);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.edit-card-active .edit-card-icon svg { stroke: rgba(255, 255, 255, 0.80); }
+.edit-card-highlight .edit-card-icon svg { stroke: var(--jovi-blue); }
+.edit-card-icon-ghost svg { stroke: rgba(255, 255, 255, 0.22); }
+
+/* Label do card */
+.edit-card-label {
+    font-family: var(--font-display);
+    font-size: 8.5px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.40);
+    text-align: center;
+    line-height: 1.25;
+}
+
+.edit-card-active .edit-card-label { color: rgba(255, 255, 255, 0.72); }
+.edit-card-highlight .edit-card-label { color: var(--jovi-blue); }
+.edit-card-label-ghost { color: rgba(255, 255, 255, 0.20); }
+
+/* ── Badge (+/-) ── */
+.edit-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    border: 1.5px solid rgba(6, 9, 18, 0.9);
+}
+
+.edit-badge svg {
+    width: 9px;
+    height: 9px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+}
+
+/* Badge remover — vermelho */
+.edit-badge-remove {
+    background: #e53935;
+    box-shadow: 0 2px 6px rgba(229, 57, 53, 0.5);
+}
+
+/* Badge adicionar — azul */
+.edit-badge-add {
+    background: var(--jovi-blue);
+    box-shadow: 0 2px 6px rgba(10, 108, 255, 0.45);
+}
+
+/* ── Separador entre seções ── */
+.edit-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+    margin: 14px 0 12px;
+    border-radius: 1px;
+}
+
+/* ================================================
+   JOVI EDU — tela de câmera educacional
+   ================================================ */
+
+.edu-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fundo escuro azulado */
+.edu-screen-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(170deg, #030d1e 0%, #050e1c 50%, #000 100%);
+    z-index: 0;
+}
+
+/* Grade perspectiva sutil */
+.edu-screen-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(10, 108, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10, 108, 255, 0.04) 1px, transparent 1px);
+    background-size: 26px 26px;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ── Viewfinder ── */
+.edu-finder {
+    position: absolute;
+    top: 112px;
+    left: 18px;
+    right: 18px;
+    bottom: 198px;
+    border: 1px solid rgba(10, 108, 255, 0.22);
+    border-radius: 6px;
+    z-index: 5;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Cantos do viewfinder */
+.edu-fc {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+}
+
+.edu-fc::before,
+.edu-fc::after {
+    content: '';
+    position: absolute;
+    background: var(--jovi-blue);
+    box-shadow: 0 0 6px rgba(10, 108, 255, 0.6);
+}
+
+.edu-fc-tl { top: -1px; left: -1px; }
+.edu-fc-tl::before { top: 0; left: 0; width: 16px; height: 2px; }
+.edu-fc-tl::after  { top: 0; left: 0; width: 2px;  height: 16px; }
+
+.edu-fc-tr { top: -1px; right: -1px; }
+.edu-fc-tr::before { top: 0; right: 0; width: 16px; height: 2px; }
+.edu-fc-tr::after  { top: 0; right: 0; width: 2px;  height: 16px; }
+
+.edu-fc-bl { bottom: -1px; left: -1px; }
+.edu-fc-bl::before { bottom: 0; left: 0; width: 16px; height: 2px; }
+.edu-fc-bl::after  { bottom: 0; left: 0; width: 2px;  height: 16px; }
+
+.edu-fc-br { bottom: -1px; right: -1px; }
+.edu-fc-br::before { bottom: 0; right: 0; width: 16px; height: 2px; }
+.edu-fc-br::after  { bottom: 0; right: 0; width: 2px;  height: 16px; }
+
+/* Linha de scan animada */
+.edu-scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(10, 108, 255, 0.5), transparent);
+    animation: eduScan 2.8s ease-in-out infinite;
+}
+
+@keyframes eduScan {
+    0%   { top: 0;    opacity: 0; }
+    8%   { opacity: 1; }
+    92%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* ── Top bar EDU ── */
+.edu-top-bar {
+    position: relative;
+    z-index: 15;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 16px 0;
+    flex-shrink: 0;
+    animation: fadeUp 0.5s ease both;
+}
+
+/* ── Botão Professor IA ── */
+.edu-ia-btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(4, 10, 24, 0.82);
+    border: 1px solid rgba(10, 108, 255, 0.30);
+    border-radius: 13px;
+    padding: 6px 10px 6px 6px;
+    backdrop-filter: blur(16px);
+    transition: background 0.2s, border-color 0.2s;
+    position: relative;
+}
+
+.edu-ia-btn:hover {
+    background: rgba(10, 108, 255, 0.10);
+    border-color: rgba(10, 108, 255, 0.45);
+}
+
+/* Avatar do Professor IA */
+.edu-ia-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(10, 108, 255, 0.28), rgba(5, 40, 120, 0.45));
+    border: 1px solid rgba(10, 108, 255, 0.30);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.edu-ia-avatar svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.edu-ia-badge {
+    position: absolute;
+    bottom: -3px;
+    right: -3px;
+    background: var(--jovi-blue);
+    border-radius: 4px;
+    font-family: var(--font-display);
+    font-size: 6px;
+    font-weight: 700;
+    color: #fff;
+    padding: 1px 3px;
+    letter-spacing: 0.3px;
+    border: 1px solid rgba(4, 10, 24, 0.8);
+}
+
+/* Texto do botão IA */
+.edu-ia-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.edu-ia-name {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+    line-height: 1;
+}
+
+.edu-ia-sub {
+    font-family: var(--font-display);
+    font-size: 8.5px;
+    font-weight: 500;
+    color: rgba(10, 108, 255, 0.75);
+    letter-spacing: 0.2px;
+}
+
+/* Badge de notificação no botão IA */
+.edu-ia-notif {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e53935;
+    border: 1.5px solid #000;
+    font-family: var(--font-display);
+    font-size: 8px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Título EDU */
+.edu-screen-title {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--jovi-blue);
+    text-shadow: 0 0 18px var(--jovi-blue-glow);
+}
+
+/* Ações direita */
+.edu-top-actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* ── Hint de enquadramento ── */
+.edu-frame-hint {
+    position: relative;
+    z-index: 15;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    flex-shrink: 0;
+}
+
+.edu-hint-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--jovi-blue);
+    box-shadow: 0 0 6px rgba(10, 108, 255, 0.6);
+    animation: dotPulse 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+
+.edu-hint-text {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+}
+
+/* ── Footer EDU ── */
+.edu-footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 15;
+    padding: 0 0 0;
+    background: linear-gradient(to top,
+        rgba(2, 6, 16, 0.97) 0%,
+        rgba(2, 6, 16, 0.90) 55%,
+        transparent 100%);
+    animation: fadeUp 0.6s ease both;
+}
+
+/* Chips de modo */
+.edu-chips-row {
+    display: flex;
+    gap: 5px;
+    padding: 0 15px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.edu-chips-row::-webkit-scrollbar { display: none; }
+
+.edu-chip {
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.edu-chip-active {
+    background: rgba(10, 108, 255, 0.12);
+    border-color: rgba(10, 108, 255, 0.28);
+    color: var(--jovi-blue);
+}
+
+/* Linha de controles */
+.edu-ctrl-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 34px;
+    padding: 0 28px;
+}
+
+.edu-side-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.edu-side-btn:hover { background: rgba(255, 255, 255, 0.10); }
+
+.edu-side-btn svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Shutter EDU azul */
+.edu-shutter {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid var(--jovi-blue);
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow:
+        0 0 0 4px rgba(10, 108, 255, 0.10),
+        0 0 22px rgba(10, 108, 255, 0.18);
+    transition: transform 0.12s;
+}
+
+.edu-shutter:active { transform: scale(0.93); }
+
+.edu-shutter-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--jovi-blue) 0%, #0047cc 100%);
+}
+
+.edu-shutter-inner svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ================================================
+   MATÉRIAS — lista de conversas do Professor IA
+   ================================================ */
+
+.mat-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(170deg, #040c1a 0%, #060f1e 45%, #020609 100%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ── Header ── */
+.mat-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 18px 0;
+    flex-shrink: 0;
+}
+
+.mat-header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.mat-header-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--jovi-blue);
+    text-shadow: 0 0 14px var(--jovi-blue-glow);
+}
+
+.mat-header-sub {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.28);
+    text-transform: uppercase;
+}
+
+/* Botão nova conversa */
+.mat-new-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(10, 108, 255, 0.12);
+    border: 1px solid rgba(10, 108, 255, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.mat-new-btn:hover { background: rgba(10, 108, 255, 0.22); }
+
+.mat-new-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+}
+
+/* ── Campo de busca ── */
+.mat-search {
+    position: relative;
+    z-index: 10;
+    margin: 12px 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    padding: 9px 13px;
+    flex-shrink: 0;
+}
+
+.mat-search svg {
+    width: 13px;
+    height: 13px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.28);
+    stroke-width: 2;
+    flex-shrink: 0;
+}
+
+.mat-search input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.mat-search input::placeholder { color: rgba(255, 255, 255, 0.22); }
+
+/* ── Rótulo de seção ── */
+.mat-section-label {
+    position: relative;
+    z-index: 10;
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.28);
+    padding: 14px 18px 8px;
+    flex-shrink: 0;
+}
+
+/* ── Lista de matérias ── */
+.mat-list {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.mat-list::-webkit-scrollbar { display: none; }
+
+/* Linha de matéria */
+.mat-row {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 11px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: background 0.2s, border-color 0.2s;
+    animation: cardIn 0.4s ease both;
+}
+
+.mat-row:nth-child(1) { animation-delay: 0.04s; }
+.mat-row:nth-child(2) { animation-delay: 0.08s; }
+.mat-row:nth-child(3) { animation-delay: 0.12s; }
+.mat-row:nth-child(4) { animation-delay: 0.16s; }
+.mat-row:nth-child(5) { animation-delay: 0.20s; }
+.mat-row:nth-child(6) { animation-delay: 0.24s; }
+.mat-row:nth-child(7) { animation-delay: 0.28s; }
+
+.mat-row:hover {
+    background: rgba(10, 108, 255, 0.07);
+    border-color: rgba(10, 108, 255, 0.18);
+}
+
+/* Ícone da matéria */
+.mat-row-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(10, 108, 255, 0.08);
+    border: 1px solid rgba(10, 108, 255, 0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.mat-row-icon svg {
+    width: 17px;
+    height: 17px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Corpo da linha */
+.mat-row-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.mat-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mat-row-name {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.2px;
+}
+
+.mat-row-time {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
+}
+
+.mat-row-preview {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.35);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.1px;
+}
+
+/* Badge de não lido */
+.mat-badge {
+    flex-shrink: 0;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 99px;
+    background: var(--jovi-blue);
+    box-shadow: 0 0 8px rgba(10, 108, 255, 0.4);
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+/* ── Botão voltar à câmera ── */
+.mat-cam-btn {
+    position: relative;
+    z-index: 10;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 10px 14px 8px;
+    padding: 11px;
+    border-radius: 13px;
+    background: rgba(10, 108, 255, 0.08);
+    border: 1px solid rgba(10, 108, 255, 0.22);
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--jovi-blue);
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.mat-cam-btn:hover { background: rgba(10, 108, 255, 0.16); }
+
+.mat-cam-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ================================================
+   CHAT — Tela de conversa com o Professor IA
+   ================================================ */
+
+/* Tela raiz */
+.chat-screen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(170deg, #040c1a 0%, #060f1e 45%, #020609 100%);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ── Header do chat ── */
+.chat-header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 14px 8px;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Avatar do professor IA no header */
+.chat-header-avatar {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(10, 108, 255, 0.12);
+    border: 1px solid rgba(10, 108, 255, 0.28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(10, 108, 255, 0.18);
+}
+
+.chat-header-avatar svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+}
+
+/* Ponto online */
+.chat-online-dot {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 1.5px solid #040c1a;
+    box-shadow: 0 0 6px rgba(34, 197, 94, 0.55);
+}
+
+/* Info de texto ao lado do avatar */
+.chat-header-info {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    flex: 1;
+    min-width: 0;
+}
+
+.chat-header-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.chat-header-name {
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.3px;
+    line-height: 1;
+}
+
+.chat-header-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #22c55e;
+    line-height: 1;
+}
+
+/* Pulso animado ao lado do status */
+.chat-status-pulse {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #22c55e;
+    flex-shrink: 0;
+    animation: chatPulse 2s ease-in-out infinite;
+}
+
+@keyframes chatPulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* Ações do header (câmera + mais) */
+.chat-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+}
+
+.chat-action-btn {
+    text-decoration: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chat-action-btn:hover { background: rgba(255, 255, 255, 0.10); }
+
+.chat-action-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.65);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── Separador de data ── */
+.chat-date-sep {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0 6px;
+    flex-shrink: 0;
+}
+
+.chat-date-sep span {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+    padding: 3px 10px;
+}
+
+/* ── Área de mensagens (scrollável) ── */
+.chat-messages {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.chat-messages::-webkit-scrollbar { display: none; }
+
+/* ── Wrapper de balão (alinhamento esquerda/direita) ── */
+.chat-bubble-wrap {
+    display: flex;
+    align-items: flex-end;
+    gap: 7px;
+    animation: chatBubbleIn 0.3s ease both;
+}
+
+@keyframes chatBubbleIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* IA — esquerda */
+.chat-bubble-ia  { align-self: flex-start; max-width: 90%; }
+/* Usuário — direita */
+.chat-bubble-user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+    max-width: 78%;
+}
+
+/* Mini-avatar da IA dentro do chat */
+.chat-ia-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: rgba(10, 108, 255, 0.12);
+    border: 1px solid rgba(10, 108, 255, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    align-self: flex-end;
+}
+
+.chat-ia-avatar svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* ── Balão de mensagem ── */
+.chat-bubble {
+    position: relative;
+    padding: 9px 11px 20px;
+    border-radius: 14px;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: 0.15px;
+}
+
+/* Balão da IA — esquerdo */
+.chat-bubble-left {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.88);
+    border-bottom-left-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Balão do usuário — direito */
+.chat-bubble-right {
+    background: linear-gradient(135deg, var(--jovi-blue) 0%, #0052cc 100%);
+    border: 1px solid rgba(10, 108, 255, 0.4);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+    box-shadow:
+        0 4px 16px rgba(10, 108, 255, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* Remetente (nome acima da mensagem IA) */
+.chat-bubble-sender {
+    display: block;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--jovi-blue);
+    margin-bottom: 5px;
+}
+
+/* Timestamp do balão */
+.chat-bubble-time {
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.28);
+}
+
+.chat-bubble-time-right {
+    color: rgba(255, 255, 255, 0.50);
+}
+
+/* ── Fórmula matemática em destaque ── */
+.chat-formula {
+    display: block;
+    margin: 8px 0;
+    padding: 7px 12px;
+    border-radius: 8px;
+    background: rgba(10, 108, 255, 0.10);
+    border: 1px solid rgba(10, 108, 255, 0.20);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: var(--jovi-blue);
+    text-shadow: 0 0 12px rgba(10, 108, 255, 0.35);
+    font-family: var(--font-display);
+}
+
+/* ── Passos de resolução ── */
+.chat-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    margin-top: 6px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.chat-step-num {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(10, 108, 255, 0.16);
+    border: 1px solid rgba(10, 108, 255, 0.24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: 700;
+    color: var(--jovi-blue);
+    font-family: var(--font-display);
+    margin-top: 1px;
+}
+
+/* ── Card de conteúdo relacionado (captura da lousa) ── */
+.chat-content-card {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 10px;
+    padding: 9px 10px;
+    border-radius: 11px;
+    background: rgba(10, 108, 255, 0.07);
+    border: 1px solid rgba(10, 108, 255, 0.18);
+}
+
+.chat-card-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: rgba(10, 108, 255, 0.12);
+    border: 1px solid rgba(10, 108, 255, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.chat-card-icon svg {
+    width: 13px;
+    height: 13px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.chat-card-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.chat-card-label {
+    font-family: var(--font-display);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--jovi-blue);
+    line-height: 1;
+}
+
+.chat-card-desc {
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.1px;
+}
+
+.chat-card-btn {
+    text-decoration: none;
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--jovi-blue);
+    padding: 4px 9px;
+    border-radius: 6px;
+    background: rgba(10, 108, 255, 0.12);
+    border: 1px solid rgba(10, 108, 255, 0.28);
+    transition: background 0.2s;
+}
+
+.chat-card-btn:hover { background: rgba(10, 108, 255, 0.22); }
+
+/* ── Sugestões rápidas ── */
+.chat-suggestions {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px 4px;
+    overflow-x: auto;
+    flex-shrink: 0;
+    scrollbar-width: none;
+}
+
+.chat-suggestions::-webkit-scrollbar { display: none; }
+
+.chat-suggestion {
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--jovi-blue);
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(10, 108, 255, 0.08);
+    border: 1px solid rgba(10, 108, 255, 0.22);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+}
+
+.chat-suggestion:hover {
+    background: rgba(10, 108, 255, 0.18);
+    border-color: rgba(10, 108, 255, 0.40);
+}
+
+/* ── Área de input ── */
+.chat-input-area {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px 10px;
+    flex-shrink: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Botão de anexar câmera */
+.chat-attach-btn {
+    text-decoration: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(10, 108, 255, 0.08);
+    border: 1px solid rgba(10, 108, 255, 0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+
+.chat-attach-btn:hover { background: rgba(10, 108, 255, 0.18); }
+
+.chat-attach-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: var(--jovi-blue);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* Caixa de input de texto */
+.chat-input-box {
+    flex: 1;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 22px;
+    padding: 0 14px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    transition: border-color 0.2s;
+}
+
+.chat-input-box:focus-within {
+    border-color: rgba(10, 108, 255, 0.35);
+}
+
+.chat-input-box input {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    letter-spacing: 0.15px;
+}
+
+.chat-input-box input::placeholder {
+    color: rgba(255, 255, 255, 0.22);
+}
+
+/* Botão enviar */
+.chat-send-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--jovi-blue) 0%, #0047cc 100%);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(10, 108, 255, 0.35);
+    transition: transform 0.15s, box-shadow 0.2s;
+}
+
+.chat-send-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 0 18px rgba(10, 108, 255, 0.50);
+}
+
+.chat-send-btn:active { transform: scale(0.93); }
+
+.chat-send-btn svg {
+    width: 13px;
+    height: 13px;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

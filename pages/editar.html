@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Editar Modos — JOVI</title>
+</head>
+<body>
+<div class="phone">
+
+  <!-- ══════════════════════════════
+       TELA: EDITAR MODOS
+  ══════════════════════════════ -->
+  <div class="edit-screen">
+
+    <div class="cfg-bg-grid"></div>
+    <div class="cfg-bg-halo"></div>
+
+    <!-- Status bar -->
+    <div class="cfg-status-bar">
+      <span class="cfg-time">9:41</span>
+      <div class="icons-group">
+        <svg width="18" height="12" viewBox="0 0 18 12" class="cfg-icon-svg">
+          <rect x="0" y="7" width="3" height="5" rx="1"/>
+          <rect x="4" y="5" width="3" height="7" rx="1"/>
+          <rect x="8" y="2" width="3" height="10" rx="1"/>
+          <rect x="12" y="0" width="3" height="12" rx="1" opacity="0.3"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" class="cfg-icon-svg">
+          <path d="M8 12L16 4C14.5 2.5 11.5 0 8 0C4.5 0 1.5 2.5 0 4L8 12Z"/>
+        </svg>
+        <div class="cfg-battery">
+          <div class="cfg-battery-level"></div>
+          <div class="cfg-battery-cap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header editar -->
+    <div class="edit-header">
+      <a href="configuracao.html" class="edit-action-btn" aria-label="Cancelar">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </a>
+      <span class="cfg-page-title">EDITAR</span>
+      <a href="../pages/configuracao.html" class="edit-action-btn edit-action-confirm" aria-label="Confirmar">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </a>
+    </div>
+
+    <!-- Body scrollável -->
+    <div class="edit-body">
+
+      <!-- ── Modos da tela principal ── -->
+      <div class="edit-section-head">
+        <span class="edit-section-title">Modos da Tela Principal</span>
+        <span class="edit-section-hint">Segure e arraste para reordenar</span>
+      </div>
+
+      <!-- Grid dos modos principais (com badge remover) -->
+      <div class="edit-grid edit-grid-main">
+
+        <div class="edit-card edit-card-active">
+          <div class="edit-badge edit-badge-remove">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <span class="edit-card-label">Vídeo</span>
+        </div>
+
+        <div class="edit-card edit-card-active">
+          <div class="edit-badge edit-badge-remove">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <span class="edit-card-label">Retrato</span>
+        </div>
+
+        <div class="edit-card edit-card-active">
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          </div>
+          <span class="edit-card-label">Foto</span>
+        </div>
+
+        <div class="edit-card edit-card-active">
+          <div class="edit-badge edit-badge-remove">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </div>
+          <span class="edit-card-label">Noite</span>
+        </div>
+
+        <div class="edit-card edit-card-active">
+          <div class="edit-badge edit-badge-remove">
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><polyline points="17 2 12 7 7 2"/></svg>
+          </div>
+          <span class="edit-card-label">Microfilme</span>
+        </div>
+
+        <!-- Slot vazio -->
+        <div class="edit-card edit-card-empty">
+          <div class="edit-card-icon edit-card-icon-ghost">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <span class="edit-card-label edit-card-label-ghost">Adicionar</span>
+        </div>
+
+      </div><!-- /edit-grid-main -->
+
+      <!-- Separador -->
+      <div class="edit-divider"></div>
+
+      <!-- ── Mais modos (adicionar) ── -->
+      <div class="edit-section-head">
+        <span class="edit-section-title">Mais modos</span>
+      </div>
+
+      <div class="edit-grid edit-grid-more">
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/><path d="M3 9h2M3 15h2M19 9h2M19 15h2"/></svg>
+          </div>
+          <span class="edit-card-label">Alta Resolução</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0"/><path d="M3 12h18"/></svg>
+          </div>
+          <span class="edit-card-label">Panorâmica</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          </div>
+          <span class="edit-card-label">Documento em Ultra HD</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span class="edit-card-label">Câmera lenta</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <span class="edit-card-label">Intervalo</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+          </div>
+          <span class="edit-card-label">Superlua</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+          </div>
+          <span class="edit-card-label">Profissional</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <span class="edit-card-label">Instantâneo</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <span class="edit-card-label">Comida</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="9" height="18" rx="2"/><rect x="13" y="3" width="9" height="18" rx="2"/></svg>
+          </div>
+          <span class="edit-card-label">Visualização dupla</span>
+        </div>
+
+        <div class="edit-card edit-card-highlight">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <span class="edit-card-label">Jovi Edu</span>
+        </div>
+
+        <div class="edit-card">
+          <div class="edit-badge edit-badge-add">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div class="edit-card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><circle cx="11" cy="11" r="3"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <span class="edit-card-label">Modo Pet</span>
+        </div>
+
+      </div><!-- /edit-grid-more -->
+
+    </div><!-- /edit-body -->
+
+    <div class="modes-home-bar" style="margin-bottom:14px;"></div>
+
+  </div><!-- /edit-screen -->
+
+</div><!-- /phone -->
+</body>
+</html>

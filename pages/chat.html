@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Chat — Matemática</title>
+</head>
+<body>
+<div class="phone">
+  <div class="chat-screen">
+
+    <div class="cfg-bg-grid"></div>
+    <div class="cfg-bg-halo"></div>
+
+    <!-- Status bar -->
+    <div class="cfg-status-bar">
+      <span class="cfg-time">9:41</span>
+      <div class="icons-group">
+        <svg width="18" height="12" viewBox="0 0 18 12" class="cfg-icon-svg">
+          <rect x="0" y="7" width="3" height="5" rx="1"/>
+          <rect x="4" y="5" width="3" height="7" rx="1"/>
+          <rect x="8" y="2" width="3" height="10" rx="1"/>
+          <rect x="12" y="0" width="3" height="12" rx="1" opacity="0.3"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" class="cfg-icon-svg">
+          <path d="M8 12L16 4C14.5 2.5 11.5 0 8 0C4.5 0 1.5 2.5 0 4L8 12Z"/>
+        </svg>
+        <div class="cfg-battery">
+          <div class="cfg-battery-level"></div>
+          <div class="cfg-battery-cap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header do chat -->
+    <div class="chat-header">
+
+      <a href="materias.html" class="cfg-back-btn" aria-label="Voltar">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </a>
+
+      <div class="chat-header-info">
+        <div class="chat-header-avatar">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          <!-- Indicador online -->
+          <span class="chat-online-dot"></span>
+        </div>
+        <div class="chat-header-text">
+          <span class="chat-header-name">Matemática</span>
+          <span class="chat-header-status">
+            <span class="chat-status-pulse"></span>
+            Professor IA ativo
+          </span>
+        </div>
+      </div>
+
+      <!-- Ações do header -->
+      <div class="chat-header-actions">
+        <!-- Captura da lousa -->
+        <a href="joviEdu.html" class="chat-action-btn" aria-label="Abrir câmera EDU">
+          <svg viewBox="0 0 24 24">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+        </a>
+        <!-- Mais opções -->
+        <button class="chat-action-btn" aria-label="Mais opções">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="5" r="1.5" fill="currentColor"/>
+            <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+            <circle cx="12" cy="19" r="1.5" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Separador com data -->
+    <div class="chat-date-sep">
+      <span>Hoje</span>
+    </div>
+
+    <!-- Mensagens -->
+    <div class="chat-messages">
+
+      <!-- IA — abertura -->
+      <div class="chat-bubble-wrap chat-bubble-ia">
+        <div class="chat-ia-avatar">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <path d="M9 9h.01M15 9h.01M9 15h6"/>
+          </svg>
+        </div>
+        <div class="chat-bubble chat-bubble-left">
+          <div class="chat-bubble-sender">JOVI EDU IA</div>
+          Olá! Analisei o conteúdo da lousa capturado pela câmera. Vejo que a aula de hoje é sobre <strong>Derivadas</strong>. Posso ajudar com algum exercício específico?
+          <div class="chat-bubble-time">9:38</div>
+        </div>
+      </div>
+
+      <!-- Usuário -->
+      <div class="chat-bubble-wrap chat-bubble-user">
+        <div class="chat-bubble chat-bubble-right">
+          Qual é a derivada de f(x) = x³ + 2x²?
+          <div class="chat-bubble-time chat-bubble-time-right">9:39</div>
+        </div>
+      </div>
+
+      <!-- IA — resposta com fórmula -->
+      <div class="chat-bubble-wrap chat-bubble-ia">
+        <div class="chat-ia-avatar">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <path d="M9 9h.01M15 9h.01M9 15h6"/>
+          </svg>
+        </div>
+        <div class="chat-bubble chat-bubble-left">
+          <div class="chat-bubble-sender">JOVI EDU IA</div>
+          Aplicando a <strong>regra da potência</strong>:
+          <div class="chat-formula">f'(x) = 3x² + 4x</div>
+          Detalhando cada etapa:<br>
+          <span class="chat-step"><span class="chat-step-num">1</span>Derivada de x³ → baixa o expoente: <strong>3x²</strong></span>
+          <span class="chat-step"><span class="chat-step-num">2</span>Derivada de 2x² → 2·2x = <strong>4x</strong></span>
+          <div class="chat-bubble-time">9:39</div>
+        </div>
+      </div>
+
+      <!-- Usuário -->
+      <div class="chat-bubble-wrap chat-bubble-user">
+        <div class="chat-bubble chat-bubble-right">
+          E se eu precisar da segunda derivada?
+          <div class="chat-bubble-time chat-bubble-time-right">9:40</div>
+        </div>
+      </div>
+
+      <!-- IA — segunda derivada -->
+      <div class="chat-bubble-wrap chat-bubble-ia">
+        <div class="chat-ia-avatar">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <path d="M9 9h.01M15 9h.01M9 15h6"/>
+          </svg>
+        </div>
+        <div class="chat-bubble chat-bubble-left">
+          <div class="chat-bubble-sender">JOVI EDU IA</div>
+          Derivamos f'(x) mais uma vez:
+          <div class="chat-formula">f''(x) = 6x + 4</div>
+          A segunda derivada indica a <strong>concavidade</strong> da curva. Quando f''(x) &gt; 0 a parábola é côncava para cima, quando &lt; 0 é côncava para baixo.
+          <div class="chat-bubble-time">9:40</div>
+        </div>
+      </div>
+
+      <!-- IA — cartão de conteúdo relacionado -->
+      <div class="chat-bubble-wrap chat-bubble-ia">
+        <div class="chat-ia-avatar">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <path d="M9 9h.01M15 9h.01M9 15h6"/>
+          </svg>
+        </div>
+        <div class="chat-bubble chat-bubble-left">
+          <div class="chat-bubble-sender">JOVI EDU IA</div>
+          Conteúdo relacionado na lousa de hoje:
+          <div class="chat-content-card">
+            <div class="chat-card-icon">
+              <svg viewBox="0 0 24 24">
+                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                <circle cx="12" cy="13" r="4"/>
+              </svg>
+            </div>
+            <div class="chat-card-body">
+              <span class="chat-card-label">Captura da lousa</span>
+              <span class="chat-card-desc">Exercícios 3, 4 e 5 — Regras de derivação</span>
+            </div>
+            <a href="joviEdu.html" class="chat-card-btn">Ver</a>
+          </div>
+          <div class="chat-bubble-time">9:41</div>
+        </div>
+      </div>
+
+      <!-- Espaço para o input não cobrir -->
+      <div style="height: 8px;"></div>
+
+    </div><!-- /chat-messages -->
+
+    <!-- Sugestões rápidas -->
+    <div class="chat-suggestions">
+      <button class="chat-suggestion">Mais exercícios</button>
+      <button class="chat-suggestion">Ver lousa</button>
+      <button class="chat-suggestion">Resumo do conteúdo</button>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input-area">
+      <!-- Anexar captura -->
+      <a href="joviEdu.html" class="chat-attach-btn" aria-label="Enviar captura da câmera">
+        <svg viewBox="0 0 24 24">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </a>
+
+      <div class="chat-input-box">
+        <input type="text" placeholder="Pergunte sobre o conteúdo..." readonly>
+      </div>
+
+      <!-- Enviar -->
+      <button class="chat-send-btn" aria-label="Enviar">
+        <svg viewBox="0 0 24 24">
+          <line x1="12" y1="19" x2="12" y2="5"/>
+          <polyline points="5 12 12 5 19 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="modes-home-bar" style="margin-bottom:10px;"></div>
+
+  </div>
+</div>
+</body>
+</html>

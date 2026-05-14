@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Jovi Edu — Câmera</title>
+</head>
+<body>
+<div class="phone">
+  <div class="edu-screen">
+
+    <!-- Fundo -->
+    <div class="edu-screen-bg"></div>
+
+    <!-- Grade perspectiva -->
+    <div class="edu-screen-grid"></div>
+
+    <!-- Viewfinder inteligente -->
+    <div class="edu-finder">
+      <div class="edu-fc edu-fc-tl"></div>
+      <div class="edu-fc edu-fc-tr"></div>
+      <div class="edu-fc edu-fc-bl"></div>
+      <div class="edu-fc edu-fc-br"></div>
+      <div class="edu-scan-line"></div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="cfg-status-bar">
+      <span class="cfg-time">9:41</span>
+      <div class="icons-group">
+        <svg width="18" height="12" viewBox="0 0 18 12" class="cfg-icon-svg">
+          <rect x="0" y="7" width="3" height="5" rx="1"/>
+          <rect x="4" y="5" width="3" height="7" rx="1"/>
+          <rect x="8" y="2" width="3" height="10" rx="1"/>
+          <rect x="12" y="0" width="3" height="12" rx="1" opacity="0.3"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" class="cfg-icon-svg">
+          <path d="M8 12L16 4C14.5 2.5 11.5 0 8 0C4.5 0 1.5 2.5 0 4L8 12Z"/>
+        </svg>
+        <div class="cfg-battery">
+          <div class="cfg-battery-level"></div>
+          <div class="cfg-battery-cap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header EDU -->
+    <div class="edu-top-bar">
+
+      <!-- Botão Professor IA → vai para lista de matérias -->
+      <a href="materias.html" class="edu-ia-btn" aria-label="Professor IA">
+        <div class="edu-ia-avatar">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+          <span class="edu-ia-badge">IA</span>
+        </div>
+        <div class="edu-ia-info">
+          <span class="edu-ia-name">Professor IA</span>
+          <span class="edu-ia-sub">7 matérias ativas</span>
+        </div>
+        <!-- Notificação -->
+        <span class="edu-ia-notif">3</span>
+      </a>
+
+      <!-- Título -->
+      <h2 class="edu-screen-title">EDU</h2>
+
+      <!-- Ações direita -->
+      <div class="edu-top-actions">
+        <button class="cam-icon-btn" aria-label="Flash">
+          <svg viewBox="0 0 24 24">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </button>
+        <a href="camera.html" class="cam-icon-btn" aria-label="Fechar">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Hint de enquadramento -->
+    <div class="edu-frame-hint">
+      <span class="edu-hint-dot"></span>
+      <span class="edu-hint-text">Posicione a lousa ou documento no guia</span>
+    </div>
+
+    <!-- Footer EDU -->
+    <div class="edu-footer">
+
+      <!-- Chips de modo -->
+      <div class="edu-chips-row">
+        <span class="edu-chip edu-chip-active">LOUSA</span>
+        <span class="edu-chip">DOCUMENTO</span>
+        <span class="edu-chip">SLIDES</span>
+        <span class="edu-chip">EXERCÍCIO</span>
+        <span class="edu-chip">PROVA</span>
+      </div>
+
+      <!-- Controles -->
+      <div class="edu-ctrl-row">
+
+        <!-- Galeria -->
+        <button class="edu-side-btn" aria-label="Galeria">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </button>
+
+        <!-- Shutter EDU -->
+        <button class="edu-shutter" aria-label="Capturar">
+          <span class="edu-shutter-inner">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </span>
+        </button>
+
+        <!-- Virar câmera -->
+        <button class="edu-side-btn" aria-label="Virar câmera">
+          <svg viewBox="0 0 24 24">
+            <polyline points="1 4 1 10 7 10"/>
+            <path d="M3.51 15a9 9 0 1 0 .49-3.5"/>
+          </svg>
+        </button>
+
+      </div>
+
+      <div class="modes-home-bar" style="margin-top:13px;"></div>
+
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

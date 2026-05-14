@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Professor IA — Matérias</title>
+</head>
+<body>
+<div class="phone">
+  <div class="mat-screen">
+
+    <div class="cfg-bg-grid"></div>
+    <div class="cfg-bg-halo"></div>
+
+    <!-- Status bar -->
+    <div class="cfg-status-bar">
+      <span class="cfg-time">9:41</span>
+      <div class="icons-group">
+        <svg width="18" height="12" viewBox="0 0 18 12" class="cfg-icon-svg">
+          <rect x="0" y="7" width="3" height="5" rx="1"/>
+          <rect x="4" y="5" width="3" height="7" rx="1"/>
+          <rect x="8" y="2" width="3" height="10" rx="1"/>
+          <rect x="12" y="0" width="3" height="12" rx="1" opacity="0.3"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" class="cfg-icon-svg">
+          <path d="M8 12L16 4C14.5 2.5 11.5 0 8 0C4.5 0 1.5 2.5 0 4L8 12Z"/>
+        </svg>
+        <div class="cfg-battery">
+          <div class="cfg-battery-level"></div>
+          <div class="cfg-battery-cap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="mat-header">
+      <a href="joviEdu.html" class="cfg-back-btn" aria-label="Voltar">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </a>
+      <div class="mat-header-center">
+        <span class="mat-header-title">Professor IA</span>
+        <span class="mat-header-sub">JOVI EDU</span>
+      </div>
+      <!-- Botão nova conversa -->
+      <button class="mat-new-btn" aria-label="Nova conversa">
+        <svg viewBox="0 0 24 24">
+          <line x1="12" y1="5" x2="12" y2="19"/>
+          <line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Campo de busca -->
+    <div class="mat-search">
+      <svg viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="text" placeholder="Buscar matéria ou tópico..." readonly>
+    </div>
+
+    <!-- Rótulo -->
+    <div class="mat-section-label">CONVERSAS RECENTES</div>
+
+    <!-- Lista de matérias -->
+    <div class="mat-list">
+
+      <!-- Matemática — com badge não lido -->
+      <a href="chat.html" class="mat-row">
+        <div class="mat-row-icon">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19"/>
+            <line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+        </div>
+        <div class="mat-row-body">
+          <div class="mat-row-top">
+            <span class="mat-row-name">Matemática</span>
+            <span class="mat-row-time">agora</span>
+          </div>
+          <span class="mat-row-preview">Derivadas e integrais — qual é a derivada de f(x) = x³?</span>
+        </div>
+        <span class="mat-badge">3</span>
+      </a>
+
+      <!-- Física -->
+      <a href="chat.html" class="mat-row">
+        <div class="mat-row-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="2"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+          </svg>
+        </div>
+        <div class="mat-row-body">
+          <div class="mat-row-top">
+            <span class="mat-row-name">Física</span>
+            <span class="mat-row-time">2h</span>
+          </div>
+          <span class="mat-row-preview">Cinemática e leis de Newton — MRU e MRUV</span>
+        </div>
+        <span class="mat-badge">1</span>
+      </a>
+
+      <!-- Química -->
+      <a href="chat.html" class="mat-row">
+        <div class="mat-row-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M9 3h6v11l3.5 6.5a1 1 0 0 1-.9 1.5H6.4a1 1 0 0 1-.9-1.5L9 14V3z"/>
+            <line x1="9" y1="9" x2="15" y2="9"/>
+          </svg>
+        </div>
+        <div class="mat-row-body">
+          <div class="mat-row-top">
+            <span class="mat-row-name">Química</span>
+            <span class="mat-row-time">ontem</span>
+          </div>
+          <span class="mat-row-preview">Ligações químicas e tabela periódica</span>
+        </div>
+      </a>
+
+      <!-- Biologia -->
+      <a href="chat.html" class="mat-row">
+        <div class="mat-row-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="mat-row-body">
+          <div class="mat-row-top">
+            <span class="mat-row-name">Biologia</span>
+            <span class="mat-row-time">2d</span>
+          </div>
+          <span class="mat-row-preview">Genética e herança mendeliana</span>
+        </div>
+      </a>
+
+      <!-- História -->
+      <a href="chat.html" class="mat-row">
+        <div class="mat-row-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div class="mat-row-body">
+          <div class="mat-row-top">
+            <span class="mat-row-name">História</span>
+            <span class="mat-row-time">3d</span>
+          </div>
+          <span class="mat-row-preview">Revolução Francesa e modernidade</span>
+        </div>
+      </a>
+
+      <!-- Português -->
+      <a href="chat.html" class="mat-row">
+        <div class="mat-row-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+        </div>
+        <div class="mat-row-body">
+          <div class="mat-row-top">
+            <span class="mat-row-name">Português</span>
+            <span class="mat-row-time">1s</span>
+          </div>
+          <span class="mat-row-preview">Redação dissertativa-argumentativa</span>
+        </div>
+      </a>
+
+      <!-- Geografia -->
+      <a href="chat.html" class="mat-row">
+        <div class="mat-row-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <div class="mat-row-body">
+          <div class="mat-row-top">
+            <span class="mat-row-name">Geografia</span>
+            <span class="mat-row-time">1s</span>
+          </div>
+          <span class="mat-row-preview">Geopolítica e globalização</span>
+        </div>
+      </a>
+
+    </div><!-- /mat-list -->
+
+    <!-- Rodapé: voltar para câmera -->
+    <a href="joviEdu.html" class="mat-cam-btn">
+      <svg viewBox="0 0 24 24">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+      Voltar à câmera EDU
+    </a>
+
+    <div class="modes-home-bar" style="margin-bottom:14px;"></div>
+
+  </div>
+</div>
+</body>
+</html>

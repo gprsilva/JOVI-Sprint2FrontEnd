@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Configurações — JOVI</title>
+</head>
+<body>
+<div class="phone">
+
+  <!-- ══════════════════════════════
+       TELA: CONFIGURAÇÕES
+  ══════════════════════════════ -->
+  <div class="cfg-screen">
+
+    <!-- Fundo grade perspectiva (herdado do outrosModos) -->
+    <div class="cfg-bg-grid"></div>
+    <div class="cfg-bg-halo"></div>
+
+    <!-- Status bar -->
+    <div class="cfg-status-bar">
+      <span class="cfg-time">9:41</span>
+      <div class="icons-group">
+        <svg width="18" height="12" viewBox="0 0 18 12" class="cfg-icon-svg">
+          <rect x="0" y="7" width="3" height="5" rx="1"/>
+          <rect x="4" y="5" width="3" height="7" rx="1"/>
+          <rect x="8" y="2" width="3" height="10" rx="1"/>
+          <rect x="12" y="0" width="3" height="12" rx="1" opacity="0.3"/>
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" class="cfg-icon-svg">
+          <path d="M8 12L16 4C14.5 2.5 11.5 0 8 0C4.5 0 1.5 2.5 0 4L8 12Z"/>
+        </svg>
+        <div class="cfg-battery">
+          <div class="cfg-battery-level"></div>
+          <div class="cfg-battery-cap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="cfg-header">
+      <a href="camera.html" class="cfg-back-btn" aria-label="Voltar">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </a>
+      <span class="cfg-page-title">CONFIGURAÇÕES</span>
+      <span class="cfg-header-ghost"></span>
+    </div>
+
+    <!-- Conteúdo scrollável -->
+    <div class="cfg-body">
+
+      <!-- ── Seção: Câmera ── -->
+      <div class="cfg-section-label">CÂMERA</div>
+
+      <!-- Opção: Editar modos -->
+      <a href="editar.html" class="cfg-row cfg-row-link">
+        <div class="cfg-row-icon">
+          <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Editar modos</span>
+          <span class="cfg-row-sub">Organize os modos da tela principal</span>
+        </div>
+        <svg class="cfg-row-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+
+      <!-- Opção: Resolução padrão -->
+      <div class="cfg-row">
+        <div class="cfg-row-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Resolução padrão</span>
+          <span class="cfg-row-sub">12 MP · Padrão</span>
+        </div>
+        <svg class="cfg-row-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <!-- Opção: Grade -->
+      <div class="cfg-row cfg-row-toggle">
+        <div class="cfg-row-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Grade de composição</span>
+          <span class="cfg-row-sub">Exibir linhas guia na câmera</span>
+        </div>
+        <div class="cfg-toggle cfg-toggle-on">
+          <div class="cfg-toggle-thumb"></div>
+        </div>
+      </div>
+
+      <!-- Opção: Som do obturador -->
+      <div class="cfg-row cfg-row-toggle">
+        <div class="cfg-row-icon">
+          <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Som do obturador</span>
+          <span class="cfg-row-sub">Áudio ao capturar foto</span>
+        </div>
+        <div class="cfg-toggle">
+          <div class="cfg-toggle-thumb"></div>
+        </div>
+      </div>
+
+      <!-- ── Seção: IA ── -->
+      <div class="cfg-section-label">INTELIGÊNCIA ARTIFICIAL</div>
+
+      <!-- Opção: Smart-Pop -->
+      <div class="cfg-row cfg-row-toggle">
+        <div class="cfg-row-icon cfg-row-icon-blue">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Recomendação IA</span>
+          <span class="cfg-row-sub">Smart-Pop de modo contextual</span>
+        </div>
+        <div class="cfg-toggle cfg-toggle-on">
+          <div class="cfg-toggle-thumb"></div>
+        </div>
+      </div>
+
+      <!-- Opção: Jovi Edu IA -->
+      <div class="cfg-row cfg-row-toggle">
+        <div class="cfg-row-icon cfg-row-icon-blue">
+          <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Professor IA — Jovi Edu</span>
+          <span class="cfg-row-sub">Assistente por matéria ativo</span>
+        </div>
+        <div class="cfg-toggle cfg-toggle-on">
+          <div class="cfg-toggle-thumb"></div>
+        </div>
+      </div>
+
+      <!-- ── Seção: Armazenamento ── -->
+      <div class="cfg-section-label">ARMAZENAMENTO</div>
+
+      <div class="cfg-row">
+        <div class="cfg-row-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12H2"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><line x1="6" y1="16" x2="6.01" y2="16"/><line x1="10" y1="16" x2="10.01" y2="16"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Local de salvamento</span>
+          <span class="cfg-row-sub">Armazenamento interno</span>
+        </div>
+        <svg class="cfg-row-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+
+      <!-- Barra de armazenamento -->
+      <div class="cfg-storage-bar-wrap">
+        <div class="cfg-storage-bar">
+          <div class="cfg-storage-fill"></div>
+        </div>
+        <div class="cfg-storage-labels">
+          <span>18,4 GB usados</span>
+          <span>128 GB total</span>
+        </div>
+      </div>
+
+      <!-- ── Seção: Sobre ── -->
+      <div class="cfg-section-label">SOBRE</div>
+
+      <div class="cfg-row">
+        <div class="cfg-row-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="cfg-row-body">
+          <span class="cfg-row-title">Versão do aplicativo</span>
+          <span class="cfg-row-sub">JOVI Camera v1.0.0 · Build 2025</span>
+        </div>
+      </div>
+
+    </div><!-- /cfg-body -->
+
+    <div class="modes-home-bar" style="margin-bottom:14px;"></div>
+
+  </div><!-- /cfg-screen -->
+
+</div><!-- /phone -->
+</body>
+</html>

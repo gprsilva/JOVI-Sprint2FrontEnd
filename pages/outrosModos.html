@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mais Modos — JOVI</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+<div class="phone">
+  <div class="camera-modes-screen">
+
+    <!-- Status Bar -->
+    <div class="modes-status-bar">
+      <span class="time">9:41</span>
+      <div class="icons-group">
+        <svg width="18" height="12" viewBox="0 0 18 12" class="icon-svg">
+          <rect x="0" y="7" width="3" height="5" rx="1" />
+          <rect x="4" y="5" width="3" height="7" rx="1" />
+          <rect x="8" y="2" width="3" height="10" rx="1" />
+          <rect x="12" y="0" width="3" height="12" rx="1" opacity="0.3" />
+        </svg>
+        <svg width="16" height="12" viewBox="0 0 16 12" class="icon-svg">
+          <path d="M8 12L16 4C14.5 2.5 11.5 0 8 0C4.5 0 1.5 2.5 0 4L8 12Z" />
+        </svg>
+        <div class="battery-container">
+          <div class="battery-level"></div>
+          <div class="battery-cap"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <div class="modes-header">
+      <a href="camera.html" class="modes-back-btn" aria-label="Voltar">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </a>
+      <span class="modes-page-title">MAIS</span>
+      <span class="modes-header-ghost"></span>
+    </div>
+
+    <!-- Hint -->
+    <p class="modes-hint">Selecione um modo de câmera</p>
+
+    <!-- Grid de Modos -->
+    <div class="modes-grid-wrap">
+      <div class="modes-grid">
+
+        <!-- Alta Resolução -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M3 9h2M3 15h2M19 9h2M19 15h2"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Alta Resolução</span>
+        </div>
+
+        <!-- Panorâmica -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 12a9 9 0 1 0 18 0"/>
+              <path d="M3 12h18"/>
+              <path d="M12 3v4M12 17v4"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Panorâmica</span>
+        </div>
+
+        <!-- Documento Ultra HD -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Doc Ultra HD</span>
+        </div>
+
+        <!-- Câmera Lenta -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Câmera Lenta</span>
+        </div>
+
+        <!-- Intervalo -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Intervalo</span>
+        </div>
+
+        <!-- Superlua -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="5"/>
+              <line x1="12" y1="1" x2="12" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="23"/>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+              <line x1="1" y1="12" x2="3" y2="12"/>
+              <line x1="21" y1="12" x2="23" y2="12"/>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Superlua</span>
+        </div>
+
+        <!-- Profissional -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <line x1="4" y1="21" x2="4" y2="14"/>
+              <line x1="4" y1="10" x2="4" y2="3"/>
+              <line x1="12" y1="21" x2="12" y2="12"/>
+              <line x1="12" y1="8" x2="12" y2="3"/>
+              <line x1="20" y1="21" x2="20" y2="16"/>
+              <line x1="20" y1="12" x2="20" y2="3"/>
+              <line x1="1" y1="14" x2="7" y2="14"/>
+              <line x1="9" y1="8" x2="15" y2="8"/>
+              <line x1="17" y1="16" x2="23" y2="16"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Profissional</span>
+        </div>
+
+        <!-- Instantâneo -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Instantâneo</span>
+        </div>
+
+        <!-- Comida -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Comida</span>
+        </div>
+
+        <!-- Visualização Dupla -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="3" width="9" height="18" rx="2"/>
+              <rect x="13" y="3" width="9" height="18" rx="2"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Vis. Dupla</span>
+        </div>
+
+        <!-- Modo Pet -->
+        <div class="mode-card-jovi">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"/>
+              <circle cx="11" cy="11" r="3"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Modo Pet</span>
+        </div>
+
+        <!-- Jovi Edu — destaque -->
+        <a href="../pages/joviEdu.html" class="mode-card-jovi highlight" style="text-decoration:none;">
+          <div class="mode-card-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <span class="mode-card-label">Jovi Edu</span>
+        </a>
+
+      </div><!-- /modes-grid -->
+    </div><!-- /modes-grid-wrap -->
+
+    <!-- Home bar -->
+    <div class="modes-home-bar"></div>
+
+  </div><!-- /camera-modes-screen -->
+</div><!-- /phone -->
+</body>
+</html>
